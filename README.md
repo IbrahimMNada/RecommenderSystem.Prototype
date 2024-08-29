@@ -1,5 +1,8 @@
 # RecommenderSystem Based on Sql server Database as a datasource
+This is a simple model for Recommender System pased on sql server as a datasource.
 
+# How Does the Model Work
+This is a simple model for Recommender System pased on sql server as a datasource.
 
 # Setting Up The Database
 
