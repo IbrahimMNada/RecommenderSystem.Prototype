@@ -16,8 +16,7 @@ class DatabaseReader:
         cursor.close()
         db.close()
         return query_results
-        
-        
+              
     def GetAllPosts(self):
         db = pyodbc.connect(self.connection_string)
         SQL = ' select Id as post_id , title  from Posts '
@@ -37,14 +36,33 @@ class DatabaseReader:
         cursor.close()
         db.close()
         return query_results
-    
-    
+  
     def GetPostCategory(self,postId):
         db = pyodbc.connect(self.connection_string)
         SQL = ' select Category from posts where id =  ' + str(postId)
         cursor = db.cursor()
         cursor.execute(SQL)
         query_results = cursor.fetchone()
+        cursor.close()
+        db.close()
+        return query_results
+    
+    def GetIntrestsWithPosts(self):
+        db = pyodbc.connect(self.connection_string)
+        SQL = ' select * from [Posts] p join PostViews pv on p.id = pv.postId '
+        cursor = db.cursor()
+        cursor.execute(SQL)
+        query_results = [dict(zip([column[0] for column in cursor.description], row)) for row in cursor.fetchall()]
+        cursor.close()
+        db.close()
+        return query_results
+    
+    def GetPostsNotViewedByUser(self,userId):
+        db = pyodbc.connect(self.connection_string)
+        SQL = ' select * from [Posts] p join PostViews pv on p.id = pv.postId where Userid <>  ? '
+        cursor = db.cursor()
+        cursor.execute(SQL,(userId,))
+        query_results = [dict(zip([column[0] for column in cursor.description], row)) for row in cursor.fetchall()]
         cursor.close()
         db.close()
         return query_results
