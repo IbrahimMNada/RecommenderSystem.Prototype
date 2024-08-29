@@ -35,8 +35,8 @@ The model utilizes this matrix to make recommendations. Common approaches includ
    - The other approaches will be implemented soon
      
  4-Prediction of Interest Scores:
-
-   -The model predicts which posts a user might be interested in by estimating the Interest score for unseen posts. Posts with higher predicted scores are more likely to be recommended to the user.
+ 
+ The model predicts which posts a user might be interested in by estimating the Interest score for unseen posts. Posts with higher predicted scores are more likely to be recommended to the user.
 
 # Setting Up The Database
 
