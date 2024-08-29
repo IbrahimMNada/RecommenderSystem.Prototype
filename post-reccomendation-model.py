@@ -23,7 +23,7 @@ combine_post_rating = post_data.dropna(axis = 0, subset = ['title'])
 features = ['userid','postid', 'intrest']
 reader = Reader(rating_scale=(rateLimits['minintrest'], rateLimits['maxintrest']))
 data = Dataset.load_from_df(combine_post_rating[features], reader)
-param_grid = {'n_epochs': [5,300], 'lr_all': [0.002, 0.005],
+param_grid = {'n_epochs': [5,500], 'lr_all': [0.002, 0.005],
               'reg_all': [0.4, 0.6]}
 
 gs = GridSearchCV(SVD, param_grid, measures=['rmse', 'mae'], cv=3)
@@ -60,6 +60,6 @@ def get_recommendations(user_id, model, post_ids, n_recommendations=10):
 
 
 
-user_id = '55' # userId
+user_id = '459' # userId
 potentialPosts = dbReader.GetPostsNotViewedByUser(user_id)
 result =get_recommendations(user_id, model_svd, potentialPosts, n_recommendations=10)# The Result object Containing  all the needed data
