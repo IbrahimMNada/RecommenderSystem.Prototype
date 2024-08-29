@@ -70,5 +70,5 @@ The following exmplains the result of the predection
 4. Post Category at the database (this one is not yet used in the model yet, for now we are focusing only on users not content)
 5. Recommended based on user based on what user the this recommendation has been generated
 
-> [!CAUTION]
-> The Intreset Data is generated Randomly, so currently there is no pattern the model can pick up, I've Personaly tried and tested it with a small dataset and it worked fine at this point.
+<!-- > [!CAUTION]
+> The Intreset Data is generated Randomly, so currently there is no pattern the model can pick up, I've Personaly tried and tested it with a small dataset and it worked fine at this point. -->
