@@ -26,7 +26,7 @@ data = Dataset.load_from_df(combine_post_rating[features], reader)
 param_grid = {'n_epochs': [5,500], 'lr_all': [0.002, 0.005],
               'reg_all': [0.4, 0.6]}
 
-gs = GridSearchCV(SVD, param_grid, measures=['rmse', 'mae'], cv=3,verbose=3)
+gs = GridSearchCV(SVD, param_grid, measures=['rmse', 'mae'], cv=3)
 gs.fit(data)
 model_svd = gs.best_estimator['rmse']
 model_svd.fit(data.build_full_trainset())
