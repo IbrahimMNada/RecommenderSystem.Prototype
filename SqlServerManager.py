@@ -56,6 +56,17 @@ class DatabaseReader:
         cursor.close()
         db.close()
         return query_results
+
+    
+    def GetRateingLimits(self):
+        db = pyodbc.connect(self.connection_string)
+        SQL = ' select min(intrest) As MinIntrest  , max(intrest) As MaxIntrest  from PostViews '
+        cursor = db.cursor()
+        cursor.execute(SQL)
+        query_results = cursor.fetchone()
+        cursor.close()
+        db.close()
+        return query_results
     
     def GetPostsNotViewedByUser(self,userId):
         db = pyodbc.connect(self.connection_string)

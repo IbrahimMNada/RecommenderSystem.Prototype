@@ -1,5 +1,4 @@
 import pandas as pd
-import numpy as np
 import json
 import SqlServerManager as sql
 from surprise import SVD
@@ -14,12 +13,13 @@ dbReader = sql.DatabaseReader(".", # sql Server instance
                               )
 
 post_data = pd.read_json(json.dumps(dbReader.GetIntrestsWithPosts()))
+rateLimits = dbReader.GetRateingLimits()
 
 dataframe = pd.DataFrame(post_data)
 combine_post_rating = post_data.dropna(axis = 0, subset = ['title'])
 rating_popular_post = combine_post_rating.drop_duplicates(['userid', 'postid'])
-max_rating = np.amax( post_data['intrest'] )
-min_rating = np.amin( post_data['intrest'] )
+max_rating = rateLimits['minintrest']
+min_rating = rateLimits['maxintrest']
 
 
 features = ['userid','postid', 'intrest']
@@ -54,7 +54,7 @@ def get_recommendations(user_id, model, post_ids, n_recommendations=10):
     
     return top_n_predictions
 
-user_id = '5eece14ffc13ae66090001ee' # userId
+user_id = '5eece14ffc13ae660911112c' # userId
 potentialPosts = dbReader.GetPostsNotViewedByUser(user_id)
 
 result =get_recommendations(user_id, model_svd, potentialPosts, n_recommendations=10)# The Result object Containing  all the needed data
