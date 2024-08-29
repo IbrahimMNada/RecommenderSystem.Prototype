@@ -25,8 +25,10 @@
       ![image](https://github.com/user-attachments/assets/1a821ffb-0b7b-4a17-8bca-4b4b74f9cd6b)
 
 
-> [!IMPORTANT]
-> Key information users need to know to achieve their goal.
-> Key information users need to know to achieve their goal.
-> Key information users need to know to achieve their goal.
-> Key information users need to know to achieve their goal.
+# Result anatomy
+The following exmplains the result of the predection  
+1. Post Title
+2. The distance between the user and the post **(positive correlation)**
+3. Post Id at the Database
+4. Post Category at the database (this one is not yet used in the model yet, for now we are focusing only on users not content)
+5. Recommended based on user based on what user the this recommendation has been generated 
