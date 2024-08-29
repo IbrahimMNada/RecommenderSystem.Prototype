@@ -18,7 +18,24 @@ This is a simple model for Recommender System pased on sql server as a datasourc
    - **Gender:** Gender of the user.
 
 # How Does the Model Work
-This is a simple model for Recommender System pased on sql server as a datasource.
+1- Data Collection:
+   - The recommender system uses the PostViews table to gather data on user interactions with posts. Each entry in PostViews represents a specific interaction where a user (identified by UserId) viewed or engaged with a post (identified by PostId).
+     
+   -The Interest column records the level of engagement or preference. Higher values might indicate greater interest or more positive feedback, while lower values could suggest less interest.
+
+2- User-Post Interaction Matrix:
+
+   - The recommender model builds a user-post interaction matrix where each row represents a user and each column represents a post. The values in this matrix are derived from the Interest column in PostViews.
+      For instance, if a user showed a high level of interest in a post, the corresponding cell in the matrix will have a higher value.
+      Generating Recommendations:
+
+The model utilizes this matrix to make recommendations. Common approaches include:
+Collaborative Filtering: Recommends posts that similar users (with similar interest patterns) have liked.
+Content-Based Filtering: Recommends posts similar to those that a user has shown interest in, based on the Category or text content from the Title.
+Hybrid Models: Combines collaborative and content-based filtering to improve recommendation quality.
+Prediction of Interest Scores:
+
+The model predicts which posts a user might be interested in by estimating the Interest score for unseen posts. Posts with higher predicted scores are more likely to be recommended to the user.
 
 # Setting Up The Database
 
