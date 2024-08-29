@@ -72,3 +72,11 @@ The following exmplains the result of the predection
 
 <!-- > [!CAUTION]
 > The Intreset Data is generated Randomly, so currently there is no pattern the model can pick up, I've Personaly tried and tested it with a small dataset and it worked fine at this point. -->
+
+
+| Metric          | Fold 1 | Fold 2 | Fold 3 | Fold 4 | Fold 5 | Mean   | Std   |
+|-----------------|--------|--------|--------|--------|--------|--------|-------|
+| **RMSE (testset)** | 0.9258 | 0.9153 | 0.9219 | 0.9209 | 0.9213 | 0.9211 | 0.0034 |
+| **MAE (testset)**  | 0.7175 | 0.7114 | 0.7172 | 0.7116 | 0.7141 | 0.7144 | 0.0026 |
+| **Fit time (s)**   | 21.63  | 22.19  | 22.65  | 22.73  | 21.42  | 22.12  | 0.53  |
+| **Test time (s)**  | 0.13   | 0.11   | 0.11   | 0.14   | 0.11   | 0.12   | 0.01  |

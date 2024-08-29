@@ -6,7 +6,7 @@ from surprise import Dataset
 from surprise.model_selection import  GridSearchCV
 from surprise import Reader
 from itertools import groupby
-from operator import itemgetter
+from surprise.model_selection import cross_validate
 
 dbReader = sql.DatabaseReader(".", # sql Server instance 
                               "post-reccomendation-model", # database name
@@ -31,11 +31,11 @@ gs.fit(data)
 model_svd = gs.best_estimator['rmse']
 model_svd.fit(data.build_full_trainset())
 
+cross_validate(model_svd, data, measures=["RMSE", "MAE"], cv=5, verbose=True)
 
 def get_recommendations(user_id, model, post_ids, n_recommendations=10):
     predictions = []
     for post_id in post_ids:
-
         prediction = model.predict(user_id, post_id['postid'])
         predictions.append((post_id, prediction.est))
 
@@ -46,7 +46,7 @@ def get_recommendations(user_id, model, post_ids, n_recommendations=10):
     for group_key, group in grouped_predictions.items():
         highest_item = max(group, key=lambda x: x[1])
         user_ids = [item[0]['userid'] for item in group]
-        highest_item[0]['userids'] = user_ids       
+        highest_item[0]['userids'] = user_ids
         highest_in_group.append(highest_item)
     
     highest_in_group.sort(key=lambda x: x[1], reverse=True)
@@ -60,6 +60,6 @@ def get_recommendations(user_id, model, post_ids, n_recommendations=10):
 
 
 
-user_id = '459' # userId
+user_id = 459 # userId
 potentialPosts = dbReader.GetPostsNotViewedByUser(user_id)
 result =get_recommendations(user_id, model_svd, potentialPosts, n_recommendations=10)# The Result object Containing  all the needed data
