@@ -1,4 +1,4 @@
-![image](https://github.com/user-attachments/assets/13fca7f0-18e2-4648-b487-d677fa868001)# RecommenderSystem Based on Sql server Database as a datasource
+# RecommenderSystem Based on Sql server Database as a datasource
 
 
 # Setting Up The Database
