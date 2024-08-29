@@ -31,7 +31,7 @@ gs.fit(data)
 model_svd = gs.best_estimator['rmse']
 model_svd.fit(data.build_full_trainset())
 
-cross_validate(model_svd, data, measures=["RMSE", "MAE"], cv=5, verbose=True)
+#cross_validate(model_svd, data, measures=["RMSE", "MAE"], cv=5, verbose=True)
 
 def get_recommendations(user_id, model, post_ids, n_recommendations=10):
     predictions = []
