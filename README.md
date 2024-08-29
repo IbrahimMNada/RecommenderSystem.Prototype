@@ -1,6 +1,22 @@
 # RecommenderSystem Based on Sql server Database as a datasource
 This is a simple model for Recommender System pased on sql server as a datasource.
 
+# Schema Overview
+- **Posts Table (dbo.Posts):** Contains information about each post.
+   - **Id:** Unique identifier for each post.
+   - **Title:** The title of the post.
+   - **Category:** The category to which the post belongs (e.g., "programming").
+     
+- **PostViews Table (dbo.PostViews)**: Tracks user interactions with posts.
+   - **UserId: **Foreign key linking to the Users table, identifying the user.
+   - **PostId:** Foreign key linking to the Posts table, identifying the post.
+   - **Interest:** A column indicating the level of interest a user has shown in a post, possibly represented as an integer score.
+     
+- Users Table (dbo.Users): Contains user information.
+   - **Id:** Unique identifier for each user.
+   - **FullName:** Full name of the user.
+   - **Gender:** Gender of the user.
+
 # How Does the Model Work
 This is a simple model for Recommender System pased on sql server as a datasource.
 
