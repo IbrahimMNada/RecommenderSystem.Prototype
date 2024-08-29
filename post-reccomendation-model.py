@@ -17,16 +17,13 @@ rateLimits = dbReader.GetRateingLimits()
 
 dataframe = pd.DataFrame(post_data)
 combine_post_rating = post_data.dropna(axis = 0, subset = ['title'])
-rating_popular_post = combine_post_rating.drop_duplicates(['userid', 'postid'])
-max_rating = rateLimits['minintrest']
-min_rating = rateLimits['maxintrest']
-
 
 features = ['userid','postid', 'intrest']
-reader = Reader(rating_scale=(min_rating, max_rating))
-data = Dataset.load_from_df(rating_popular_post[features], reader)
+reader = Reader(rating_scale=(rateLimits['minintrest'], rateLimits['maxintrest']))
+data = Dataset.load_from_df(combine_post_rating[features], reader)
 param_grid = {'n_epochs': [5, 40], 'lr_all': [0.002, 0.005],
               'reg_all': [0.4, 0.6]}
+
 gs = GridSearchCV(SVD, param_grid, measures=['rmse', 'mae'], cv=3)
 gs.fit(data)
 model_svd = gs.best_estimator['rmse']
@@ -34,15 +31,11 @@ model_svd.fit(data.build_full_trainset())
 
 
 def get_recommendations(user_id, model, post_ids, n_recommendations=10):
-    
-    posts_to_predict = post_ids
-
     predictions = []
-    for post_id in posts_to_predict:
+    for post_id in post_ids:
 
         prediction = model.predict(user_id, post_id['postid'])
         predictions.append((post_id, prediction.est))
-
 
     predictions.sort(key=lambda x: x[1], reverse=True)
     top_n_predictions = predictions[:n_recommendations]
@@ -51,10 +44,10 @@ def get_recommendations(user_id, model, post_ids, n_recommendations=10):
     for i, (post_id, est_score) in enumerate(top_n_predictions, 1):
         print(f"{i}. {post_id['title']} (Predicted Interest Score: {est_score:.2f}) \n  \t *Post#: {post_id['postid']} \n \t *Category: {post_id['category']} \n \t *Recommended based on user# {post_id['userid']} \n")
         
-    
     return top_n_predictions
+
+
 
 user_id = '5eece14ffc13ae660911112c' # userId
 potentialPosts = dbReader.GetPostsNotViewedByUser(user_id)
-
 result =get_recommendations(user_id, model_svd, potentialPosts, n_recommendations=10)# The Result object Containing  all the needed data
