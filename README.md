@@ -11,14 +11,14 @@
 # Setting The Project
 1. After closing the project, Open the base directory containing the file **`requirements.txt`**
 2. Run this Command To create Virtual Environment 
-            > python -m venv env
+   > python -m venv env
 3. Activate the Virtual Environment using the command
-            > ./env/scripts/activate
+   > ./env/scripts/activate
 4. Now in your terminal you should see this means the Virtual Environment is active.
       ![image](https://github.com/user-attachments/assets/6d0de5e3-84a7-4437-892f-e2c5ef688bf7)
 
 5. Now Run to install the packages related to the project
-            > pip install -r requirements.txt
+   > pip install -r requirements.txt
 
 6. Done! you can run your Project Now, Here is what the Result looks like :
 
