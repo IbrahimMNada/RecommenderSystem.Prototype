@@ -46,6 +46,10 @@ The model utilizes this matrix to make recommendations. Common approaches includ
 ![image](https://github.com/user-attachments/assets/5b5c3992-8419-418f-8376-59dc6cd5e784)
 
 # Setting The Project
+
+> [!IMPORTANT]
+> Make Sure you have c++ installed.
+
 1. After closing the project, Open the base directory containing the file **`requirements.txt`**
 2. Run this Command To create Virtual Environment 
    > python -m venv env
